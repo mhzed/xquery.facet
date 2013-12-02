@@ -6,11 +6,11 @@
 Faceted search has proven to be enormously popular in real world applications.  This document proposes a potential
 solution that will facilitate the implementation of faceted search in XQuery.
 
-In its essence, faceted search refers to aggregating (counting) search results based on (dynamic or static) values of
-one or more fields.  The aggregating function is similar to "group by" clause introduced in XQuery 3.0.  In fact,
-this document will demonstrate via implementation example that the faceted count can be implemented entirely using
-"group by" clause.  Nevertheless, we feel the solution presented here is still necessary for performance consideration
-and syntactic clarity.
+Faceted search involves aggregating (counting) search results based on (dynamic or static) values of
+one or more fields.  The aggregating function is similar to "group by" clause introduced in XQuery 3.0.  This document
+contains implementation example showing that the facet count can be implemented entirely using "group by" clause.
+Nevertheless, we feel the solution presented here is still necessary for performance consideration and syntactic
+clarity.
 
 ## Proposal
 
@@ -25,12 +25,12 @@ The proposal is to introduce the addition of two new built-in functions:
 
 #### Properties
 
-    Both forms of this function are: non-deterministic, context-independent, focus-independent
+Both forms of this function are: non-deterministic, context-independent, focus-independent
 
 #### Rules
 
-    Given a sequence of nodes, and an optional unary predicate that returns a sequence of facet values for each node,
-    count the number of occurrences of each facet value.
+Given a sequence of nodes, and an optional unary predicate that returns a sequence of facet values for each node, count
+the number of occurrences of each facet value in the sequence.
 
 #### Example
 
@@ -77,12 +77,12 @@ The proposal is to introduce the addition of two new built-in functions:
 
 #### Properties
 
-    This function is: non-deterministic, context-independent, focus-independent
+This function is: non-deterministic, context-independent, focus-independent
 
 #### Rules
 
-    Given a sequence of nodes, and a sequence of unary predicates that returns a sequence of facet values for each node,
-    with the lower indexed predicate producing the outer facets, count the nested facets.  See example below.
+Given a sequence of nodes, and a sequence of unary predicates that returns a sequence of facet values for each node,
+with the lower indexed predicate producing the outer facets, count the nested facets.  See example below.
 
 #### Example
 
@@ -119,36 +119,38 @@ The proposal is to introduce the addition of two new built-in functions:
 
 In real world application, facet count is usually calculated over a large set of results.  For example,
 on a shopping site, a user enters a full text search query that returns 20000 products.  Even though only 10 products
-are retrieved and shown in the page, the facets are always counted over the entire 20000 products.  As such, performance
-is critical for facet counting.
+are retrieved and shown in the page, the facets are always counted over the entire 20000 products.  In addition,
+many different types of facets are calculated, for example:  "price range", "manufacturer", "size", etc.  Consequently,
+performance is critical for facet counting.
 
-The facet-count function above can be implemented in O(n) with minimal memory footprint.  Below we will illustrate a
+The facet-count function can be implemented in O(n) with minimal memory footprint.  Below we will illustrate a
 sample implementation in python:
 
     def facet_count(sequence, predicate):
         countMap = {}
         for e in sequence:
-            for facet in predicate(e):
-                if countMap.has_key(facet):
-                    countMap[facet] = countMap[facet] + 1
+            for facet_value in predicate(e):
+                if countMap.has_key(facet_value):
+                    countMap[facet_value] = countMap[facet_value] + 1
                 else:
-                    countMap[facet] = 1
+                    countMap[facet_value] = 1
         return countMap
 
-Comparing to the "group by" solution offered in examples above, this implementation does not require sorting, and
-is therefore faster.
+As demonstrated previously, facet-count can be achieved via "group by".  However the implementation of "group by"
+is more complex, as the output of "group by" is a tuple stream in which each tuple is another group of tuples with same
+grouping keys.  For facet-count, the output is simply a value to count dictionary.
 
 Similarly, nested-facet-count can be implemented as follows, in O(n):
 
     def nested_facet_count(sequence, predicates):
         def _nested_facet_count_elem(countMap, elem, predicates):
             if len(predicates) > 0:
-                for facet in predicates[0](elem):
-                    if countMap.has_key(facet):
-                        countMap[facet]["n"] = countMap[facet]["n"] + 1
+                for facet_value in predicates[0](elem):
+                    if countMap.has_key(facet_value):
+                        countMap[facet_value]["n"] = countMap[facet_value]["n"] + 1
                     else:
-                        countMap[facet] = { "n": 1, "_nest": {} }
-                    _nested_facet_count_elem(countMap[facet]['_nest'], elem, predicates[1:])
+                        countMap[facet_value] = { "n": 1, "_nest": {} }
+                    _nested_facet_count_elem(countMap[facet_value]['_nest'], elem, predicates[1:])
         countMap = {}
         for e in sequence:
             _nested_facet_count_elem(countMap, e, predicates)
@@ -158,12 +160,12 @@ Similarly, nested-facet-count can be implemented as follows, in O(n):
 ### Database performance consideration
 
 In the context of a XML database, the facet-counted fields do not need to be pre-indexed, however they should be
-"covered" in index (Covering index).  This optimization is critical as otherwise facet count will result in lots
+"covered" by index (Covering index).  This optimization is critical as otherwise facet count will result in lots
 of random disk IO.
 
 ## Use cases
 
-Below is the sample xml data used to demonstrate use cases, expressed in XQuery:
+Below is the sample xml data used to demonstrate the use cases, expressed in XQuery:
 
     let $data :=
     <sample>
