@@ -1,103 +1,97 @@
-<facets>
-    <facet value="Organization">
-        <count value="Finance">1</count>
-        <count value="HR">2</count>
-        <count value="Sales">3</count>
-    </facet>
-    <facet value="Sex">
-        <count value="Male">4</count>
-        <count value="Female">2</count>
-    </facet>
-    <facet value="Age">
-        <count value="20+">2</count>
-        <count value="40+">1</count>
-        <count value="30+">1</count>
-        <count value="&lt;20">1</count>
-        <count value=">50">1</count>
-    </facet>
-    <facet value="Age with description">
-        <count value="teanager">1</count>
-        <count value="middle-aged">1</count>
-        <count value="older">1</count>
-        <count value="near retirement">1</count>
-    </facet>
-    <facet value="Employ Year">
-        <count value="2010">3</count>
-        <count value="2003">1</count>
-        <count value="2009">1</count>
-        <count value="1999">1</count>
-    </facet>
-    <facet value="Skills">
-        <count value="word">4</count>
-        <count value="excel">2</count>
-        <count value="windows">1</count>
-        <count value="powerpoint">4</count>
-        <count value="linux">1</count>
-        <count value="openoffice">1</count>
-        <count value="photoshop">1</count>
-        <count value="negotiation">1</count>
-    </facet>
-    <facet value="Skills">
-        <count value="word">4</count>
-        <count value="excel">2</count>
-        <count value="windows">1</count>
-        <count value="powerpoint">4</count>
-        <count value="linux">1</count>
-        <count value="openoffice">1</count>
-        <count value="photoshop">1</count>
-        <count value="negotiation">1</count>
-    </facet>
-    <facet value="Location">
-        <count value="US">6
-            <count value="CA">2
-                <count value="Pleasanton">1</count>
-                <count value="San Francisco">1</count>
-            </count>
-            <count value="WA">3
-                <count value="Seattle">1</count>
-                <count value="Bellingham">2</count>
-            </count>
-            <count value="Oregan">1
-                <count value="Eugene">1</count>
-            </count>
-        </count>
-    </facet>
-    <facet value="State/Skills">
-        <count value="CA">2
-            <count value="word">2</count>
-            <count value="excel">2</count>
-            <count value="windows">1</count>
-            <count value="powerpoint">1</count>
-            <count value="linux">1</count>
-        </count>
-        <count value="WA">3
-            <count value="openoffice">1</count>
-            <count value="word">2</count>
-            <count value="powerpoint">2</count>
-            <count value="photoshop">1</count>
-        </count>
-        <count value="Oregan">1
-            <count value="powerpoint">1</count>
-            <count value="negotiation">1</count>
-        </count>
-    </facet>
-    <facet value="Location">
-        <count value="CA">2
-            <count value="windows">1</count>
-            <count value="powerpoint">1</count>
-            <count value="linux">1</count>
-            <count value="excel">2</count>
-            <count value="word">2</count>
-        </count>
-        <count value="Oregan">1
-            <count value="powerpoint">1</count>
-            <count value="negotiation">1</count>
-        </count>
-        <count value="WA">3
-            <count value="openoffice">1</count>
-            <count value="photoshop">1</count>
-            <count value="powerpoint">2</count>
-            <count value="word">2</count>
-        </count>
-    </facet>
-</facets>
+<result>
+    <facets>
+        <facet name="Org">
+            <value name="Finance">1</value>
+            <value name="HR">2</value>
+            <value name="Sales">3</value>
+        </facet>
+        <facet name="Sex">
+            <value name="Male">4</value>
+            <value name="Female">2</value>
+        </facet>
+        <facet name="Country">
+            <value name="US">6
+                <facet name="State">
+                    <value name="WA">3
+                        <facet name="City">
+                            <value name="Bellingham">2</value>
+                            <value name="Seattle">1</value>
+                        </facet>
+                    </value>
+                    <value name="CA">2
+                        <facet name="City">
+                            <value name="San Francisco">1</value>
+                            <value name="Pleasanton">1</value>
+                        </facet>
+                    </value>
+                    <value name="Oregan">1
+                        <facet name="City">
+                            <value name="Eugene">1</value>
+                        </facet>
+                    </value>
+                </facet>
+            </value>
+        </facet>
+        <facet name="Skill">
+            <value name="powerpoint">4</value>
+            <value name="word">4</value>
+            <value name="excel">2</value>
+            <value name="photoshop">1</value>
+            <value name="openoffice">1</value>
+            <value name="linux">1</value>
+            <value name="negotiation">1</value>
+            <value name="windows">1</value>
+        </facet>
+        <facet name="Employ year">
+            <value name="2009">1</value>
+            <value name="2010">3</value>
+            <value name="2003">1</value>
+            <value name="1999">1</value>
+        </facet>
+        <facet name="Employ year">
+            <value name="<20">1</value>
+            <value name="30+">1</value>
+            <value name="20+">2</value>
+        </facet>
+        <facet name="State">
+            <value name="WA">3
+                <facet name="Skills">
+                    <value name="photoshop">1</value>
+                    <value name="openoffice">1</value>
+                    <value name="powerpoint">2</value>
+                    <value name="word">2</value>
+                </facet>
+            </value>
+            <value name="CA">2
+                <facet name="Skills">
+                    <value name="linux">1</value>
+                    <value name="powerpoint">1</value>
+                    <value name="excel">2</value>
+                    <value name="word">2</value>
+                    <value name="windows">1</value>
+                </facet>
+            </value>
+            <value name="Oregan">1
+                <facet name="Skills">
+                    <value name="negotiation">1</value>
+                    <value name="powerpoint">1</value>
+                </facet>
+            </value>
+        </facet>
+        <facet name="Region">
+            <value name="Southern US">2</value>
+            <value name="Northern US">4</value>
+        </facet>
+    </facets>
+    <drill-by-sales-sex>
+        <name>Kylie</name>
+    </drill-by-sales-sex>
+    <drill-by-age-range-twentyplus>
+        <name>John Doe</name>
+        <name>Kylie</name>
+    </drill-by-age-range-twentyplus>
+    <drill-by-region-south>
+        <name>John Doe</name>
+        <name>Jane Joe</name>
+    </drill-by-region-south>
+</result>
