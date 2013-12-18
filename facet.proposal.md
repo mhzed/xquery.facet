@@ -25,7 +25,7 @@ The requirements for the API are:
 
 ### Terminologies
 
-* Facet:  refers to an attribute.  For example,  "color" is a facet of "car" object.
+* Facet:  refers to an attribute to be categorized.  For example,  "color" is a facet of "car" object.
 
 * Facet-value: refers to a value of Facet.  For example, "blue" is a facet-value of facet "color" for "car" object.
 
